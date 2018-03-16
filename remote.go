@@ -18,12 +18,12 @@ package main
 
 // Type Remote is a client for a remote git provider
 type Remote interface {
-	// Function Create creates a new remote repository
+	// Function CreateRepo creates a new remote repository
 	CreateRepo() error
-	// Function Clone clones the remote repository
+	// Function CloneRepo clones the remote repository
 	CloneRepo() error
-	// Functon Delete deletes a remote repository
+	// Functon DeleteRepo deletes a remote repository
 	DeleteRepo() error
-	// Function List list all remote repositories
+	// Function ListRepos list all remote repositories
 	ListRepos() error
 }
