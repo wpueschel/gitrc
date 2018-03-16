@@ -20,6 +20,26 @@ Detailed usage information will be given by issuing
 gitrc -h [repotype]
 ```
 
+### Examples
+
+#### Create a new repository on github and clone it
+
+```
+mkdir test-repo
+cd test-repo
+gitrc -N github
+```
+
+This will create a new repository named test-repo on github, put a basic README.md in it and clone it into the directory test-repo.
+
+#### Only create a remote repository, no clone
+
+```
+gitrc -n test-repo github
+```
+
+This will create a new remote repository named test-repo with a basic README.md in it.
+
 ## Config file
 
 Some of the options have to be put into a config file (mainly credentials). The config file has to be valid JSON.
