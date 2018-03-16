@@ -6,6 +6,8 @@
 go get github.com/wpueschel/gitrc
 ```
 
+If you don't have a working go setup, you can also download binaries for Linux or Windows from the release tab.
+
 ## Usage
 
 ```
