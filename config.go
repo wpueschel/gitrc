@@ -85,7 +85,7 @@ func (c *Config) readFile(fname string) error {
 	return nil
 }
 
-// Function NewGiteaConf creates and returns a new gitea config object
+// Function NewConfig creates and returns a new gitea config object
 func NewConfig() (*Config, error) {
 
 	c := new(Config)
@@ -103,6 +103,9 @@ func NewConfig() (*Config, error) {
 
 			return &Config{}, err
 		}
+	} else {
+		log.Fatalf("Could not read config file %s: %s", c.configfile, err)
+		return &Config{}, err
 	}
 
 	// if -N is set, we dont need a repo name and make the current directory name the reponame
