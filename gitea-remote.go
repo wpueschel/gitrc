@@ -35,8 +35,7 @@ type GiteaRemote struct {
 	Repo        *gitea.Repository
 }
 
-// Function CreateRepo creates a remote and a local clone of an repository
-// What is being created depends on  the config
+// Function CreateRepo creates a remote repository
 func (g *GiteaRemote) CreateRepo() error {
 
 	var err error

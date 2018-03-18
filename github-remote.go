@@ -41,8 +41,7 @@ type GithubRemote struct {
 	ctx          context.Context
 }
 
-// Function CreateRepo creates a remote and a local clone of an repository
-// What is being created depends on  the config
+// Function CreateRepo creates a remote repository
 func (g *GithubRemote) CreateRepo() error {
 
 	var err error

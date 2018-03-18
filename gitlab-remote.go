@@ -35,8 +35,7 @@ type GitlabRemote struct {
 	Repo         *gitlab.Project
 }
 
-// Function CreateRepo creates a remote and a local clone of an repository
-// What is being created depends on  the config
+// Function CreateRepo creates a remote repository
 func (g *GitlabRemote) CreateRepo() error {
 
 	var nsid int
