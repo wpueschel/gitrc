@@ -21,6 +21,9 @@ import (
 	"os"
 )
 
+// version will be set during build (-ldflags)
+var version string
+
 func main() {
 
 	// Vars we need here
@@ -60,6 +63,10 @@ func main() {
 		}
 		// Set remote
 		remote = NewGithubRemote(config)
+
+	case "version":
+		log.Printf("Version: %s\n", version)
+		os.Exit(0)
 
 	default:
 		log.Fatalf("Unknown config type: %s\nTry -h [configtype] where configtype can be one of: %s", conftype, conftypes)
