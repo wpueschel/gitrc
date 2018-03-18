@@ -32,15 +32,23 @@ cd test-repo
 gitrc -N github
 ```
 
-This will create a new repository named test-repo on github, put a basic README.md in it and clone it into the directory test-repo.
+This will create a new repository named test-repo on github, put a basic README.md in it and clone it into the directory test-repo. If you use this with an additional -P, it will create a private repository.
 
-#### Only create a remote repository, no clone
+#### Create a remote repository, no clone
 
 ```
 gitrc -n test-repo github
 ```
 
-This will create a new remote repository named test-repo with a basic README.md in it.
+This will create a new remote repository named test-repo with a basic README.md in it. With an added -P it will create a private repository.
+
+#### Delete a remote repository
+
+```
+gitrc -n test-repo -D github
+```
+
+This will delete an existing repository on github. Be carefull though, there's no second thought. It's just being deleted.
 
 ## Config file
 
