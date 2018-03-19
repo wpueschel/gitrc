@@ -71,6 +71,6 @@ Password in the config will only be needed if you clone via http.
 
 ## GitHub
 
-ssh cloning is the default. Same as with GitLab. You will need a runnign and configured ssh-agent and the host github.com should be already in your known_host file.
+ssh cloning is the default. Same as with GitLab. You will need a running and configured ssh-agent and the host github.com should be already in your known_host file.
 
 Password in the config will only be needed if you clone via http.
