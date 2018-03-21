@@ -43,6 +43,7 @@ type Config struct {
 	configfile string
 	newrepo    bool
 	list       bool
+	listLong   bool
 	private    bool
 	del        bool
 }
@@ -55,7 +56,8 @@ func (c *Config) readFlags() error {
 	flag.StringVar(&c.configfile, "c", fmt.Sprintf("%s/%s", os.Getenv("HOME"), ".gitrc.json"), "Config file")
 	flag.StringVar(&c.repoName, "n", "", "Repository name")
 
-	flag.BoolVar(&c.list, "l", false, "List remote repository names and last commit tmestamp")
+	flag.BoolVar(&c.list, "l", false, "List remote repository names and last commit timestamp")
+	flag.BoolVar(&c.listLong, "L", false, "List remote repository names, cloning urls and last commit timestamp")
 	flag.BoolVar(&c.private, "P", false, "Create a private repository")
 	flag.BoolVar(&c.del, "D", false, "Delete a remote repository, has to be used with -n")
 	flag.BoolVar(&c.newrepo, "N", false, "Create a local and remote repo based on the current directory name")

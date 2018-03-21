@@ -184,9 +184,27 @@ func (g *GitlabRemote) ListRepos() error {
 	if err != nil {
 		return err
 	}
-	// Loop over projects
-	for _, p := range projects {
-		fmt.Printf("%s - %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name)
+
+	if g.Config.listLong {
+
+		switch g.Config.Provider["gitlab"].CloneProtocol {
+		case "ssh":
+			// Loop over projects
+			for _, p := range projects {
+				fmt.Printf("%s - %-36s %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.SSHURLToRepo)
+			}
+		case "http":
+			for _, p := range projects {
+				fmt.Printf("%s - %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.HTTPURLToRepo)
+			}
+		default:
+			return errors.New(fmt.Sprintf("Unknown cloning protocol: %s", g.Config.Provider["gitlab"].CloneProtocol))
+		}
+
+	} else {
+		for _, p := range projects {
+			fmt.Printf("%s - %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name)
+		}
 	}
 
 	return nil

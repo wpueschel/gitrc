@@ -136,8 +136,27 @@ func (g *GithubRemote) ListRepos() error {
 		return err
 	}
 
-	for _, r := range repositories {
-		fmt.Printf("%s - %s\n", r.GetUpdatedAt().Format(time.RFC3339), r.GetName())
+	fmt.Println("Repolist:")
+
+	if g.Config.listLong {
+
+		switch g.Config.Provider["github"].CloneProtocol {
+		case "ssh":
+			for _, r := range repositories {
+				fmt.Printf("%s - %-36s %s\n", r.GetUpdatedAt().Format(time.RFC3339), r.GetName(), r.GetSSHURL())
+			}
+		case "http":
+			for _, r := range repositories {
+				fmt.Printf("%s - %-36s %s\n", r.GetUpdatedAt().Format(time.RFC3339), r.GetName(), r.GetHTMLURL())
+			}
+		default:
+			return errors.New(fmt.Sprintf("Unknown cloning protocol: %s", g.Config.Provider["github"].CloneProtocol))
+		}
+
+	} else {
+		for _, r := range repositories {
+			fmt.Printf("%s - %s\n", r.GetUpdatedAt().Format(time.RFC3339), r.GetName())
+		}
 	}
 
 	return nil

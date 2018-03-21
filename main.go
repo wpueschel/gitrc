@@ -73,7 +73,7 @@ func main() {
 	}
 
 	// List repos
-	if config.list {
+	if config.list || config.listLong {
 		err = remote.ListRepos()
 		if err != nil {
 			log.Fatalf("Could not list repos: %s\n", err)

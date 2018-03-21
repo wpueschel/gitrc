@@ -107,8 +107,17 @@ func (g *GiteaRemote) ListRepos() error {
 	}
 
 	fmt.Println("Repolist:")
-	for _, r := range repos {
-		fmt.Printf("%s - %s\n", r.Updated.Format(time.RFC3339), r.Name)
+
+	if g.Config.listLong {
+		for _, r := range repos {
+			fmt.Printf("%s - %-36s %s\n", r.Updated.Format(time.RFC3339), r.Name, r.HTMLURL)
+		}
+
+	} else {
+		for _, r := range repos {
+			fmt.Printf("%s - %s\n", r.Updated.Format(time.RFC3339), r.Name)
+		}
+
 	}
 
 	return nil
