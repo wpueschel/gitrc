@@ -42,6 +42,20 @@ gitrc -n test-repo github
 
 This will create a new remote repository named test-repo with a basic README.md in it. With an added -P it will create a private repository.
 
+#### List remote repositories
+
+```sh
+gitrc -l gitea
+```
+
+This will list all repositories of your configured gitea, sorted by last commit.
+
+```sh
+gitrc -L gitlab 
+```
+
+This will list all repositories on your configured gitlab with name and clone URL, sorted by last commit.
+
 #### Delete a remote repository
 
 ```sh
