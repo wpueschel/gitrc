@@ -220,5 +220,12 @@ func NewGitlabRemote(c *Config) (r *GitlabRemote) {
 	remote.GitlabClient.SetBaseURL(c.Provider["gitlab"].HostBaseURL)
 	remote.Repo = new(gitlab.Project)
 
+	// If group name is empty, we set it to user
+	provider := remote.Config.Provider["gitlab"]
+	if provider.GroupName == "" {
+		provider.GroupName = provider.User
+		remote.Config.Provider["gitlab"] = provider
+	}
+
 	return remote
 }
