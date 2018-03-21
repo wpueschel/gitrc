@@ -2,7 +2,7 @@
 
 ## Installation
 
-```
+```sh
 go get github.com/wpueschel/gitrc
 ```
 
@@ -10,7 +10,7 @@ If you don't have a working go setup, you can also download binaries for Linux o
 
 ## Usage
 
-```
+```sh
 gitrc [options] [repotype]
 ```
 
@@ -18,7 +18,7 @@ Repotype may be gitea, github or gitlab.
 
 Detailed usage information will be given by issuing 
 
-```
+```sh
 gitrc -h [repotype]
 ```
 
@@ -26,7 +26,7 @@ gitrc -h [repotype]
 
 #### Create a new repository on github and clone it
 
-```
+```sh
 mkdir test-repo
 cd test-repo
 gitrc -N github
@@ -36,7 +36,7 @@ This will create a new repository named test-repo on github, put a basic README.
 
 #### Create a remote repository, no clone
 
-```
+```sh
 gitrc -n test-repo github
 ```
 
@@ -44,7 +44,7 @@ This will create a new remote repository named test-repo with a basic README.md 
 
 #### Delete a remote repository
 
-```
+```sh
 gitrc -n test-repo -D github
 ```
 
@@ -74,3 +74,4 @@ Password in the config will only be needed if you clone via http.
 ssh cloning is the default. Same as with GitLab. You will need a running and configured ssh-agent and the host github.com should be already in your known_host file.
 
 Password in the config will only be needed if you clone via http.
+
