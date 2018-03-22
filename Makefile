@@ -23,6 +23,8 @@ windows:
 	GOOS=windows GOARCH=${GOARCH} ${GOBUILD} ${LDFLAGS} -o ${BINARY_NAME}-windows-${GOARCH}.exe . ; \
 
 dep:
+	${GOGET} "golang.org/x/sys/windows"
+	${GOGET} "golang.org/x/sys/darwin"
 	${GOGET} ./... 
 
 clean:
