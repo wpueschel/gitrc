@@ -195,7 +195,7 @@ func (g *GitlabRemote) ListRepos() error {
 			}
 		case "http":
 			for _, p := range projects {
-				fmt.Printf("%s - %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.HTTPURLToRepo)
+				fmt.Printf("%s - %-36s %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.HTTPURLToRepo)
 			}
 		default:
 			return errors.New(fmt.Sprintf("Unknown cloning protocol: %s", g.Config.Provider["gitlab"].CloneProtocol))
