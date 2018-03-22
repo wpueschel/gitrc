@@ -2,3 +2,4 @@ gitrc
 gitrc_linux-amd64
 
 gitrc_windows-386.exe
+gitrc_darwin-amd64
