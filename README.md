@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wpueschel/gitrc.svg?branch=master)](https://travis-ci.org/wpueschel/gitrc)
+
 # gitrc - Git Remote Control
 
 ## Installation
