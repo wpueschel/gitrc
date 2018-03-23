@@ -17,7 +17,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -28,14 +27,14 @@ import (
 	"gopkg.in/src-d/go-git.v4/plumbing/transport"
 )
 
-// A Gitlab Repository object
+// GitlabRemote object
 type GitlabRemote struct {
 	Config       *Config
 	GitlabClient *gitlab.Client
 	Repo         *gitlab.Project
 }
 
-// Function CreateRepo creates a remote repository
+// CreateRepo creates a remote repository
 func (g *GitlabRemote) CreateRepo() error {
 
 	var nsid int
@@ -58,7 +57,7 @@ func (g *GitlabRemote) CreateRepo() error {
 		}
 	}
 	if nsid == 0 {
-		return errors.New(fmt.Sprintf("Could not find namespace id for group %s", g.Config.Provider["gitlab"].GroupName))
+		return fmt.Errorf("Could not find namespace id for group %s", g.Config.Provider["gitlab"].GroupName)
 	}
 
 	// We create a new repository
@@ -93,7 +92,7 @@ func (g *GitlabRemote) CreateRepo() error {
 	return nil
 }
 
-// Function CloneRepo clones the remote repository
+// CloneRepo clones the remote repository
 func (g *GitlabRemote) CloneRepo() error {
 
 	fmt.Printf("Cloning %s\n", g.Repo.WebURL)
@@ -110,7 +109,7 @@ func (g *GitlabRemote) CloneRepo() error {
 		endpoint.User = g.Config.Provider["gitlab"].User
 		endpoint.Password = g.Config.Provider["gitlab"].Password
 	default:
-		err = errors.New(fmt.Sprintf("Unknown clone protocol %s", g.Config.Provider["gitlab"].CloneProtocol))
+		err = fmt.Errorf("Unknown clone protocol %s", g.Config.Provider["gitlab"].CloneProtocol)
 	}
 	if err != nil {
 		log.Fatalf("Error creating endpoint: %s\n", err)
@@ -131,7 +130,7 @@ func (g *GitlabRemote) CloneRepo() error {
 	return nil
 }
 
-// Function DeleteRepo deletes a (remote) repository
+// DeleteRepo deletes a (remote) repository
 func (g *GitlabRemote) DeleteRepo() error {
 
 	var pid int // Project id
@@ -156,7 +155,7 @@ func (g *GitlabRemote) DeleteRepo() error {
 
 	}
 	if pid == 0 {
-		return errors.New(fmt.Sprintf("Could not find repository %s/%s", g.Config.Provider["gitlab"].GroupName, g.Config.repoName))
+		return fmt.Errorf("Could not find repository %s/%s", g.Config.Provider["gitlab"].GroupName, g.Config.repoName)
 	}
 
 	// Delete the repo
@@ -168,7 +167,7 @@ func (g *GitlabRemote) DeleteRepo() error {
 	return nil
 }
 
-// Function ListRepos lists all repos for a given GitlabClient
+// ListRepos lists all repos for a given GitlabClient
 func (g *GitlabRemote) ListRepos() error {
 
 	truep := true
@@ -198,7 +197,7 @@ func (g *GitlabRemote) ListRepos() error {
 				fmt.Printf("%s - %-36s %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.HTTPURLToRepo)
 			}
 		default:
-			return errors.New(fmt.Sprintf("Unknown cloning protocol: %s", g.Config.Provider["gitlab"].CloneProtocol))
+			return fmt.Errorf("Unknown cloning protocol: %s", g.Config.Provider["gitlab"].CloneProtocol)
 		}
 
 	} else {
@@ -210,7 +209,7 @@ func (g *GitlabRemote) ListRepos() error {
 	return nil
 }
 
-// Function NewGitlabRemote creates a new Remote object and returns it
+// NewGitlabRemote creates a new Remote object and returns it
 func NewGitlabRemote(c *Config) (r *GitlabRemote) {
 
 	remote := new(GitlabRemote)

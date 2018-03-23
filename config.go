@@ -26,6 +26,7 @@ import (
 	"path/filepath"
 )
 
+// Provider contains all the necessary config settings of a git provider
 type Provider struct {
 	Token         string `json:"token"`
 	TokenName     string `json:"token_name"`
@@ -36,6 +37,7 @@ type Provider struct {
 	CloneProtocol string `json:"clone_protocol"`
 }
 
+// Config contains all necessary config settings
 type Config struct {
 	Provider   map[string]Provider `json:"provider"`
 	repoName   string
@@ -87,7 +89,7 @@ func (c *Config) readFile(fname string) error {
 	return nil
 }
 
-// Function NewConfig creates and returns a new gitea config object
+// NewConfig creates and returns a new gitea config object
 func NewConfig() (*Config, error) {
 
 	c := new(Config)

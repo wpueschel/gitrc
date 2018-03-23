@@ -28,14 +28,14 @@ import (
 	git "gopkg.in/src-d/go-git.v4"
 )
 
-// A Gitea Remote object
+// GiteaRemote implements Remote
 type GiteaRemote struct {
 	Config      *Config
 	GiteaClient *gitea.Client
 	Repo        *gitea.Repository
 }
 
-// Function CreateRepo creates a remote repository
+// CreateRepo creates a remote repository
 func (g *GiteaRemote) CreateRepo() error {
 
 	var err error
@@ -59,7 +59,7 @@ func (g *GiteaRemote) CreateRepo() error {
 	return nil
 }
 
-// Function CloneRepo clones the remote repository
+// CloneRepo clones the remote repository
 func (g *GiteaRemote) CloneRepo() error {
 
 	fmt.Printf("Cloning %s\n", g.Repo.CloneURL)
@@ -87,7 +87,7 @@ func (g *GiteaRemote) CloneRepo() error {
 	return nil
 }
 
-// Function DeleteRepo deletes a (remote) repository
+// DeleteRepo deletes a (remote) repository
 func (g *GiteaRemote) DeleteRepo() error {
 
 	err := g.GiteaClient.DeleteRepo(g.Config.Provider["gitea"].User, g.Config.repoName)
@@ -98,7 +98,7 @@ func (g *GiteaRemote) DeleteRepo() error {
 	return nil
 }
 
-// Function ListRepos lists all repos for a given GiteaCLient
+// ListRepos lists all repos for a given GiteaCLient
 func (g *GiteaRemote) ListRepos() error {
 
 	repos, err := g.GiteaClient.ListMyRepos()
@@ -123,7 +123,7 @@ func (g *GiteaRemote) ListRepos() error {
 	return nil
 }
 
-// Function NewGiteaRemote creates a new Remote object and returns it
+// NewGiteaRemote creates a new Remote object and returns it
 func NewGiteaRemote(c *Config) (r *GiteaRemote) {
 
 	remote := new(GiteaRemote)

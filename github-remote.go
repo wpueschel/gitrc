@@ -18,7 +18,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -32,7 +31,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-// A Github Repository object
+// GithubRemote implements Remote
 type GithubRemote struct {
 	Config       *Config
 	GithubClient *github.Client
@@ -41,7 +40,7 @@ type GithubRemote struct {
 	ctx          context.Context
 }
 
-// Function CreateRepo creates a remote repository
+// CreateRepo creates a remote repository
 func (g *GithubRemote) CreateRepo() error {
 
 	var err error
@@ -74,7 +73,7 @@ func (g *GithubRemote) CreateRepo() error {
 	return nil
 }
 
-// Function CloneRepo clones the remote repository
+// CloneRepo clones the remote repository
 func (g *GithubRemote) CloneRepo() error {
 
 	fmt.Printf("Cloning %s\n", g.Repo.GetURL())
@@ -91,7 +90,7 @@ func (g *GithubRemote) CloneRepo() error {
 		endpoint.User = g.Config.Provider["github"].User
 		endpoint.Password = g.Config.Provider["github"].Password
 	default:
-		err = errors.New(fmt.Sprintf("Unknown clone protocol %s", g.Config.Provider["github"].CloneProtocol))
+		err = fmt.Errorf("Unknown clone protocol %s", g.Config.Provider["github"].CloneProtocol)
 	}
 	if err != nil {
 		log.Fatalf("Error creating endpoint: %s\n", err)
@@ -112,7 +111,7 @@ func (g *GithubRemote) CloneRepo() error {
 	return nil
 }
 
-// Function DeleteRepo deletes a (remote) repository
+// DeleteRepo deletes a (remote) repository
 func (g *GithubRemote) DeleteRepo() error {
 
 	_, err := g.GithubClient.Repositories.Delete(g.ctx, g.Config.Provider["github"].User, g.Config.repoName)
@@ -123,7 +122,7 @@ func (g *GithubRemote) DeleteRepo() error {
 	return nil
 }
 
-// Function ListRepos lists all repos for a given GithubClient
+// ListRepos lists all repos for a given GithubClient
 func (g *GithubRemote) ListRepos() error {
 
 	opt := new(github.RepositoryListOptions)
@@ -150,7 +149,7 @@ func (g *GithubRemote) ListRepos() error {
 				fmt.Printf("%s - %-36s %s\n", r.GetUpdatedAt().Format(time.RFC3339), r.GetName(), r.GetHTMLURL())
 			}
 		default:
-			return errors.New(fmt.Sprintf("Unknown cloning protocol: %s", g.Config.Provider["github"].CloneProtocol))
+			return fmt.Errorf("Unknown cloning protocol: %s", g.Config.Provider["github"].CloneProtocol)
 		}
 
 	} else {
@@ -162,7 +161,7 @@ func (g *GithubRemote) ListRepos() error {
 	return nil
 }
 
-// Function NewGithubRemote creates a new Remote object and returns it
+// NewGithubRemote creates a new Remote object and returns it
 func NewGithubRemote(c *Config) (r *GithubRemote) {
 
 	remote := new(GithubRemote)
