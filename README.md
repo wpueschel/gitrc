@@ -4,11 +4,57 @@
 
 ## Installation
 
+### Downloading binaries
+
+You can download binaries for Linux, MacOS or Windows from the release tab and put them in your path.
+
+Linux example:
+
 ```sh
-go get github.com/wpueschel/gitrc
+cd /tmp
+wget https://github.com/wpueschel/gitrc/releases/download/v0.2.1/gitrc-linux-amd64
+sudo cp gitrc-linux-amd64 /usr/local/bin/gitrc
+chmod 755 /usr/local/bin/gitrc
+rm gitrc-linux-amd64
 ```
 
-If you don't have a working go setup, you can also download binaries for Linux or Windows from the release tab.
+### Building from source with make
+
+Building from source requires a setup [Go environment](https://golang.org/doc/install) with GOPATH etc. correctly set. Also, [git](https://git-scm.com/) and [make](https://www.gnu.org/software/make/) are mandatory. 
+
+Linux example:
+
+```sh
+mkdir -p $GOPATH/src/github.com/wpueschel
+cd $GOPATH/src/github.com/wpueschel
+git clone https://github.com/wpueschel/gitrc.git
+cd gitrc
+# git checkout [tag] if you want to build a stable version, master is not guaranteed to work at all times.
+make dep linux
+sudo cp gitrc-linux-amd64 /usr/local/bin/gitrc
+make clean
+```
+
+Building for other systems: 
+
+- ```make``` or ```make all``` Builds gitrc for Linux, MacOS and Windows
+- ```make dep darwin``` Builds gitrc for MacOS
+- ```make dep windows``` Builds gitrc for Windows 
+
+All build targets build an amd64 binary.
+
+### Building and installing with just "go get" (not recommended)
+
+Requires a setup go environment.
+
+Linux example:
+
+```
+go get github.com/wpueschel/gitrc
+sudo cp $GOPATH/bin/gitrc /usr/local/bin
+```
+
+This will work, as long a the master branch builds/works. However, ```gitrc version``` will not work properly.
 
 ## Usage
 
