@@ -14,7 +14,7 @@ Linux example:
 cd /tmp
 wget https://github.com/wpueschel/gitrc/releases/download/v0.2.1/gitrc-linux-amd64
 sudo cp gitrc-linux-amd64 /usr/local/bin/gitrc
-chmod 755 /usr/local/bin/gitrc
+sudo chmod 755 /usr/local/bin/gitrc
 rm gitrc-linux-amd64
 ```
 
