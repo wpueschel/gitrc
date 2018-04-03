@@ -29,7 +29,7 @@ mkdir -p $GOPATH/src/github.com/wpueschel
 cd $GOPATH/src/github.com/wpueschel
 git clone https://github.com/wpueschel/gitrc.git
 cd gitrc
-# git checkout [tag] if you want to build a stable version, master is not guaranteed to work at all times.
+# git checkout [tag] to build a stable version, master is not guaranteed to work at all times.
 make dep linux
 sudo cp gitrc-linux-amd64 /usr/local/bin/gitrc
 make clean
