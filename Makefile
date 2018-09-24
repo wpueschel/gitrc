@@ -24,6 +24,7 @@ windows:
 
 dep:
 	${GOGET} "golang.org/x/sys/windows"
+	${GOGET} "code.gitea.io/sdk/..."
 	${GOGET} ./... 
 
 clean:
