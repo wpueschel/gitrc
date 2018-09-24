@@ -139,9 +139,8 @@ func (g *GitlabRemote) DeleteRepo() error {
 	truep := true
 	plopts := new(gitlab.ListProjectsOptions)
 	// Set search options (need to be pointers)
-	plopts.Search = gitlab.String(g.Config.Provider["gitlab"].GroupName) // We only want projects of our group
-	plopts.PerPage = 1000                                                // We set this to 1000 to get all projects, should suffice
-	plopts.Owned = &truep                                                // We only want projects we are owner of
+	plopts.PerPage = 1000 // We set this to 1000 to get all projects, should suffice
+	plopts.Owned = &truep // We only want projects we are owner of
 
 	projects, _, err := g.GitlabClient.Projects.ListProjects(plopts)
 	if err != nil {
@@ -171,7 +170,6 @@ func (g *GitlabRemote) DeleteRepo() error {
 func (g *GitlabRemote) ListRepos() error {
 
 	nsid := 0
-
 	truep := true
 	plopts := new(gitlab.ListProjectsOptions)
 
@@ -187,7 +185,6 @@ func (g *GitlabRemote) ListRepos() error {
 		return err
 	}
 	for _, n := range namepspaces {
-		//fmt.Printf("Namespace.Name: %s - %d\n", n.Name, n.ID)
 		if n.Name == g.Config.Provider["gitlab"].GroupName {
 			nsid = n.ID
 		}
