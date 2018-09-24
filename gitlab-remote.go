@@ -170,15 +170,33 @@ func (g *GitlabRemote) DeleteRepo() error {
 // ListRepos lists all repos for a given GitlabClient
 func (g *GitlabRemote) ListRepos() error {
 
+	nsid := 0
+
 	truep := true
 	plopts := new(gitlab.ListProjectsOptions)
 
 	// Set search options (need to be pointers)
-	plopts.Search = gitlab.String(g.Config.Provider["gitlab"].GroupName) // We only want projects of our group
-	plopts.PerPage = 1000                                                // We set this to 1000 to get all projects, should suffice
-	plopts.Owned = &truep                                                // We only want projects we are owner of
+	plopts.PerPage = 1000 // We set this to 1000 to get all projects, should suffice
+	plopts.Owned = &truep // We only want projects we are owner of
 	plopts.OrderBy = gitlab.String("last_activity_at")
 
+	// We need to fetch the namespace id from our group name
+	nopts := new(gitlab.ListNamespacesOptions)
+	namepspaces, _, err := g.GitlabClient.Namespaces.ListNamespaces(nopts)
+	if err != nil {
+		return err
+	}
+	for _, n := range namepspaces {
+		//fmt.Printf("Namespace.Name: %s - %d\n", n.Name, n.ID)
+		if n.Name == g.Config.Provider["gitlab"].GroupName {
+			nsid = n.ID
+		}
+	}
+	if nsid == 0 {
+		return fmt.Errorf("Could not find namespace id for group %s", g.Config.Provider["gitlab"].GroupName)
+	}
+
+	// Get a list of projects that we can access
 	projects, _, err := g.GitlabClient.Projects.ListProjects(plopts)
 	if err != nil {
 		return err
@@ -190,11 +208,15 @@ func (g *GitlabRemote) ListRepos() error {
 		case "ssh":
 			// Loop over projects
 			for _, p := range projects {
-				fmt.Printf("%s - %-36s %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.SSHURLToRepo)
+				if p.Namespace.ID == nsid {
+					fmt.Printf("%s - %-36s %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.SSHURLToRepo)
+				}
 			}
 		case "http":
 			for _, p := range projects {
-				fmt.Printf("%s - %-36s %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.HTTPURLToRepo)
+				if p.Namespace.ID == nsid {
+					fmt.Printf("%s - %-36s %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name, p.HTTPURLToRepo)
+				}
 			}
 		default:
 			return fmt.Errorf("Unknown cloning protocol: %s", g.Config.Provider["gitlab"].CloneProtocol)
@@ -202,7 +224,9 @@ func (g *GitlabRemote) ListRepos() error {
 
 	} else {
 		for _, p := range projects {
-			fmt.Printf("%s - %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name)
+			if p.Namespace.ID == nsid {
+				fmt.Printf("%s - %s\n", p.LastActivityAt.Format(time.RFC3339), p.Name)
+			}
 		}
 	}
 
