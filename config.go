@@ -89,7 +89,7 @@ func (c *Config) readFile(fname string) error {
 	return nil
 }
 
-// NewConfig creates and returns a new gitea config object
+// NewConfig creates and returns a new config object
 func NewConfig() (*Config, error) {
 
 	c := new(Config)

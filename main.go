@@ -35,32 +35,23 @@ func main() {
 	// Conftype is allways the last command line parameter
 	conftype := os.Args[len(os.Args)-1]
 
+	// Get a config
+	config, err = NewConfig()
+	if err != nil {
+		log.Fatalf("Could not read config: %s", err)
+	}
+
 	switch conftype {
 
 	case "gitea":
-		// Read/fetch a config
-		config, err = NewConfig()
-		if err != nil {
-			log.Fatalf("Could not read config: %s", err)
-		}
 		// Set remote
 		remote = NewGiteaRemote(config)
 
 	case "gitlab":
-		// Read/fetch a config
-		config, err = NewConfig()
-		if err != nil {
-			log.Fatalf("Could not read config: %s", err)
-		}
 		// Set remote
 		remote = NewGitlabRemote(config)
 
 	case "github":
-		// Read/fetch a config
-		config, err = NewConfig()
-		if err != nil {
-			log.Fatalf("Could not read config: %s", err)
-		}
 		// Set remote
 		remote = NewGithubRemote(config)
 
