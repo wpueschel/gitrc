@@ -57,7 +57,6 @@ func (c *Config) readFlags() error {
 	// cmd line flags
 	flag.StringVar(&c.configfile, "c", fmt.Sprintf("%s/%s", os.Getenv("HOME"), ".gitrc.json"), "Config file")
 	flag.StringVar(&c.repoName, "n", "", "Repository name")
-
 	flag.BoolVar(&c.list, "l", false, "List remote repository names and last commit timestamp")
 	flag.BoolVar(&c.listLong, "L", false, "List remote repository names, cloning urls and last commit timestamp")
 	flag.BoolVar(&c.private, "P", false, "Create a private repository")
@@ -81,7 +80,7 @@ func (c *Config) readFile(fname string) error {
 	// Unmarshall json from rawConfFile into giteaconf
 	err = json.Unmarshal(rawConfFile, &c.Provider)
 	if err != nil {
-		log.Fatalf("Could not unmarshall json from %s: %s\n", fname, err)
+		log.Fatalf("Could not unmarshal json from %s: %s\n", fname, err)
 
 		return err
 	}
