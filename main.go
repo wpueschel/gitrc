@@ -30,10 +30,10 @@ func main() {
 	var remote Remote
 	var config *Config
 	var err error
-	var conftypes = []string{"gitea", "github", "gitlab"}
+	var providers = []string{"gitea", "github", "gitlab"}
 
 	// Conftype is allways the last command line parameter
-	conftype := os.Args[len(os.Args)-1]
+	provider := os.Args[len(os.Args)-1]
 
 	// Get a config
 	config, err = NewConfig()
@@ -41,7 +41,7 @@ func main() {
 		log.Fatalf("Could not read config: %s", err)
 	}
 
-	switch conftype {
+	switch provider {
 
 	case "gitea":
 		// Set remote
@@ -60,7 +60,7 @@ func main() {
 		os.Exit(0)
 
 	default:
-		log.Fatalf("Unknown config type: %s\nTry -h [configtype] where configtype can be one of: %s", conftype, conftypes)
+		log.Fatalf("Unknown provider: %s\nTry -h [provider] where provider type can be one of: %s", provider, providers)
 	}
 
 	// List repos
