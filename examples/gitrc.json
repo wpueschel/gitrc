@@ -14,7 +14,6 @@
      "password": "my-gitlab-password",
      "group_name": "my-gitlab-group",
      "clone_protocol": "ssh"
-
   },
   "github": {
      "token": "my-github-token",
