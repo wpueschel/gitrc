@@ -12,7 +12,7 @@ Linux example:
 
 ```sh
 cd /tmp
-wget https://github.com/wpueschel/gitrc/releases/download/v0.2.3/gitrc-linux-amd64
+wget https://github.com/wpueschel/gitrc/releases/download/v0.2.4/gitrc-linux-amd64
 sudo cp gitrc-linux-amd64 /usr/local/bin/gitrc
 sudo chmod 755 /usr/local/bin/gitrc
 rm gitrc-linux-amd64
@@ -59,15 +59,15 @@ This will work, as long a the master branch builds/works. However, ```gitrc vers
 ## Usage
 
 ```sh
-gitrc [options] [repotype]
+gitrc [options] [provider]
 ```
 
-Repotype may be gitea, github or gitlab.
+Provider may be gitea, github or gitlab.
 
 Detailed usage information will be given by issuing 
 
 ```sh
-gitrc -h [repotype]
+gitrc -h [provider]
 ```
 
 ### Examples
@@ -127,7 +127,7 @@ Right now, for gitea, only http/https will work for cloning a remote repository 
 
 For Gitlab, if you don't set a group in the config file, the group will be the username.
   
-If you chose ssh as cloning protocol, which is the default, you will need a running and configured ssh agent.
+If you chose ssh as cloning protocol, which is the default, you will need a running and configured ssh agent. And the gitlab host should already be in your known_hosts file.
 
 Password in the config will only be needed if you clone via http.
 
