@@ -25,7 +25,11 @@ windows:
 dep:
 	${GOGET} "golang.org/x/sys/windows"
 	${GOGET} "code.gitea.io/sdk/..."
-	${GOGET} ./... 
-
+	${GOGET} "github.com/xanzy/go-gitlab"
+	${GOGET} "github.com/google/go-github/github"
+	${GOGET} "golang.org/x/oauth2"
+	${GOGET} "gopkg.in/src-d/go-git.v4"
+	${GOGET} "gopkg.in/src-d/go-git.v4/plumbing/transport" 
+	
 clean:
 	-rm -f ${BINARY_NAME}-*
