@@ -23,7 +23,6 @@ windows:
 	GOOS=windows GOARCH=${GOARCH} ${GOBUILD} ${LDFLAGS} -o ${BINARY_NAME}-windows-${GOARCH}.exe . ; \
 
 dep:
-	${GOGET} "golang.org/x/sys/windows"
 	${GOGET} "code.gitea.io/sdk/..."
 	${GOGET} "github.com/xanzy/go-gitlab"
 	${GOGET} "github.com/google/go-github/github"
@@ -33,3 +32,4 @@ dep:
 	
 clean:
 	-rm -f ${BINARY_NAME}-*
+
