@@ -4,7 +4,6 @@ go:
 
 env:
   - GO111MODULE=on
-  - GOPROXY=direct
 
 deploy:
   provider: releases
