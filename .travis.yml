@@ -1,6 +1,6 @@
 language: go
-go: 
-  - 1.11.x
+go:
+  - 1.13.x
 
 deploy:
   provider: releases
@@ -8,7 +8,7 @@ deploy:
   api_key:
     secure: iYoiWRo0EGpfk38Z08LH89b5JOcUx5rLEi5RlJ22BE0pp0gqzYf2b87I4ox30z6ps7zeFUvu4P5VHr9Q9b4aqR68Eug04CBFWn3fb53rJPpSp9BaPIcEalo3S2y4nB5uFA6vAxnWkpYDR+YRwHD6AF9rWQ1zE0KadOxc7eRPezWU0JmPB7R3YgVJoDXCzy+X6U8gcKZY2cAXOmfyaKK4oRD6cSqVFq4oaVnPDzCKBbmV3XDODyfCi3mZO7kSkLZQ4265Lwoy8XHlAh22zch5AHVdRPEac/94G4IBshcm9XHyCzzg/hd8GVwJd2fgyceZZYwS5eDQso+xGErE9ApUP0TQVCmusOK99fzpM2ALxTIq8V6JTQFD9mQPdpSapeOdispYE1yEXieuLa72oFF8PIxqQXbMe1G3ocxwve7BhTq9rNYGkICQ52uAF/wwXjVLxggTp3St19Na+hf2aiNr+T7AEPJt4Yj2diHSETx26LAv3aVQ27YY6kfHXxgs/HQAF1GDp/0rkI6CcSms6haw6Be+63d/AD2K0A17a1/0gjlB4B8D5+1HliSav7pPyjdr+EsEXp67F8J45eRDkwWvLV8vRKKLSSZayx7slrvoBZHhmoYxgF9bRLoFO4jXqSMz29KnRfFbN8I610YZCgaTWRPb47ytXy6gViEhhE+lFlE=
   file_glob: true
-  file: gitrc-* 
+  file: gitrc-*
   on:
     repo: wpueschel/gitrc
     tags: true # The deployment happens only if the commit has a tag.
