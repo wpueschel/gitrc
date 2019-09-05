@@ -4,7 +4,6 @@
      "token_name": "my-gitea-access-token-name",
      "host_base_url": "https://my-gitea-host",
      "user": "my-gitea-user",
-     "password": "my-gitea-password"
   },
   "gitlab": {
      "token": "my-gitlab-token",

@@ -121,7 +121,7 @@ The default location where gitrc will look for the config file will be ```$HOME/
 
 ## Gitea
 
-Right now, for gitea, only http/https will work for cloning a remote repository (-N).
+Right now, for gitea, only http/https will work for cloning a remote repository (-N). You will need a gitea access token.
 
 ## GitLab 
 

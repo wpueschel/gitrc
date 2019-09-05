@@ -71,7 +71,7 @@ func (g *GiteaRemote) CloneRepo() error {
 		return err
 	}
 	endpoint.User = g.Config.Provider["gitea"].User
-	endpoint.Password = g.Config.Provider["gitea"].Password
+	endpoint.Password = g.Config.Provider["gitea"].Token
 
 	// Clone the repository
 	_, err = git.PlainClone(g.Config.localdir, false, &git.CloneOptions{
