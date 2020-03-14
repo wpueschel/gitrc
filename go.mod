@@ -1,12 +1,11 @@
 module github.com/wpueschel/gitrc
 
+go 1.14
+
 require (
-	code.gitea.io/sdk/gitea v0.0.0-20190802154435-bbad0d915e44
+	code.gitea.io/sdk/gitea v0.11.0
 	github.com/google/go-github v17.0.0+incompatible
-	github.com/xanzy/go-gitlab v0.20.1
-	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
-	golang.org/x/sys v0.0.0-20190904154756-749cb33beabd // indirect
+	github.com/xanzy/go-gitlab v0.28.0
+	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	gopkg.in/src-d/go-git.v4 v4.13.1
 )
-
-go 1.13
