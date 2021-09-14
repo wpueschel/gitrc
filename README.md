@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wpueschel/gitrc.svg)](https://travis-ci.org/wpueschel/gitrc) [![Go Report Card](https://goreportcard.com/badge/github.com/wpueschel/gitrc)](https://goreportcard.com/report/github.com/wpueschel/gitrc)
+[![Go Report Card](https://goreportcard.com/badge/github.com/wpueschel/gitrc)](https://goreportcard.com/report/github.com/wpueschel/gitrc)
 
 # gitrc - Git Remote Control
 
